@@ -40,4 +40,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+div {
+  color: inherit;
+}
 </style>

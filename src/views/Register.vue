@@ -28,11 +28,11 @@ export default {
   },
   methods: {
     pressed() {
-      console.log(firebase);
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(() => {
+          console.log("here");
           this.$router.replace({ name: "secret" });
         })
         .catch(error => (this.error = error));

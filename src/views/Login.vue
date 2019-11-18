@@ -43,6 +43,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+div {
+  color: inherit;
+}
 input {
   width: 400px;
   padding: 30px;
