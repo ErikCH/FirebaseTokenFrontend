@@ -3,7 +3,7 @@
     Logged in
     <div v-if="loggedIn">Yes</div>
     <div v-else>No</div>
-    <button @click="signOut">Sign out</button>
+    <button class="but" @click="signOut">Sign out</button>
   </div>
 </template>
 
@@ -13,27 +13,28 @@ import "firebase/auth";
 export default {
   name: "top-header",
   mounted() {
-    console.log("test");
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        // User is signed in.
-        console.log("signed in");
-        this.loggedIn = true;
-      } else {
-        // No user is signed in.
-        console.log("signed out");
-        this.loggedIn = false;
-      }
-    });
+    this.setupFirebase();
   },
   methods: {
+    setupFirebase() {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          // User is signed in.
+          console.log("signed in");
+          this.loggedIn = true;
+        } else {
+          // No user is signed in.
+          this.loggedIn = false;
+          console.log("signed out", this.loggedIn);
+        }
+      });
+    },
     signOut() {
       firebase
         .auth()
         .signOut()
-        .then(data => {
+        .then(() => {
           this.$router.replace({ name: "login" });
-          console.log("sing out", data);
         });
     }
   },
